@@ -57,6 +57,7 @@ jobs:
       - name: Terraform plan
         run: |
            ls
+           cd terraform
            terraform plan 
 
 
