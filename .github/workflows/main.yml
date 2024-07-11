@@ -1,0 +1,46 @@
+name: Infratructure
+run-name : ${{ github.actor }}
+on : push 
+jobs: 
+  checkout-code:
+    name: Check out code 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout_code 
+        uses: action/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Upload_artifact
+        uses: actions/upload-artifact@v4
+        with:
+            name: github-repo
+            path: .
+   
+  Terraform-action:
+    name: Terraform_action
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download-artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: github-repo
+          path: .
+      - name: Assume_role
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ap-south-1
+          role-to-assume: "arn:aws:iam::975050222078:role/oidc-role-for-github"
+          role-session-name: aws-main-role
+      - name: Install_terraform
+        uses: hasicorp/setup-terraform@v3.0.0
+        with:
+          terraform_verision: "1.1.7"
+          terraform_wrapper: false
+      - name: Terraform_FMT
+        run : terraform fmt
+      - name: Terraform_init
+        run: terraform init
+      - name: Terraform plan
+        run: terraform plan 
+               
+                   
