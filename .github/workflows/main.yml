@@ -53,9 +53,9 @@ jobs:
         run: |
             echo "${{ github.workspace }}"
             cd terraform
-            terraform init --auto-approve
+            terraform init -migrate-state
       - name: Terraform plan
-        run: |
+        run: | 
            ls
            cd terraform
            terraform plan 
