@@ -46,9 +46,12 @@ jobs:
               echo "${{ github.workspace }}"
               ls
               echo "${{ github.workspace }}"
+              cd terraform
+              ls
               terraform fmt
       - name: Terraform_init
         run: |
+            echo "${{ github.workspace }}"
             ls
             terraform init
       - name: Terraform plan
