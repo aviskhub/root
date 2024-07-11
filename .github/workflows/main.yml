@@ -43,9 +43,9 @@ jobs:
           terraform_wrapper: false
       - name: Terraform_FMT
         run : |
-              ls
-              cd terraform  
-              ls
+              echo "${{ github.workspace }}"
+              cd terraform
+              echo "${{ github.workspace }}"
               terraform fmt
       - name: Terraform_init
         run: |
