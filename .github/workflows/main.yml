@@ -44,7 +44,7 @@ jobs:
       - name: Terraform_FMT
         run : |
               echo "${{ github.workspace }}"
-              cd terraform
+              ls
               echo "${{ github.workspace }}"
               terraform fmt
       - name: Terraform_init
