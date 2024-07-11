@@ -52,10 +52,12 @@ jobs:
       - name: Terraform_init
         run: |
             echo "${{ github.workspace }}"
-            ls
+            cd terraform
             terraform init
       - name: Terraform plan
-        run: terraform plan 
+        run: |
+           ls
+           terraform plan 
 
 
                    
