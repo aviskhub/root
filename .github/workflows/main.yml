@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout_code 
-        uses: action/checkout@v4
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Upload_artifact
@@ -32,7 +32,7 @@ jobs:
           role-to-assume: "arn:aws:iam::975050222078:role/oidc-role-for-github"
           role-session-name: aws-main-role
       - name: Install_terraform
-        uses: hasicorp/setup-terraform@v3.0.0
+        uses: hashicorp/setup-terraform@v3.0.0
         with:
           terraform_verision: "1.1.7"
           terraform_wrapper: false
@@ -42,5 +42,5 @@ jobs:
         run: terraform init
       - name: Terraform plan
         run: terraform plan 
-               
+
                    
