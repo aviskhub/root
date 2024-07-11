@@ -42,7 +42,8 @@ jobs:
           terraform_verision: "1.1.7"
           terraform_wrapper: false
       - name: Terraform_FMT
-        run : terraform fmt
+        run : cd terraform |
+              terraform fmt
       - name: Terraform_init
         run: terraform init
       - name: Terraform plan
