@@ -35,6 +35,10 @@ jobs:
                 cd ..
                 echo "comming out of package"
                 ls
+                zip my_deployment_package.zip lambda_function.py
+                echo "after zipping"
+                pwd
+                ls
                
 
                  
