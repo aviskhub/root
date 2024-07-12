@@ -24,7 +24,7 @@ jobs:
                 cache: pip
             - name: installing_dependencies
               run: |
-                cd api
+                cd api/sayingthanks
                 ls
                 pip install -r requirements.txt --target ./package
                 cd package
