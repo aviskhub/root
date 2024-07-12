@@ -1,0 +1,37 @@
+name: Build_lambda
+on: push
+permissions:
+    id-token: write
+    contents: read
+jobs:
+    Build_lambda:
+          name: Build_lambda
+          runs-on: ubuntu-latest
+          steps:
+            - name: Checkout_code
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 0
+            - name: Upload_artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: repo
+                path: .
+            - name: Install_python
+              uses: actions/setup-python@v5
+              with:
+                python-version: '3.12'
+                cache: pip
+            - name: installing_dependencies
+              run: |
+                cd api
+                pip install -r requirements.txt --target ./package
+                cd package
+                ls
+                cd ..
+                ls
+                
+                 
+
+
+
