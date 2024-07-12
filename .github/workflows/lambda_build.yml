@@ -25,12 +25,13 @@ jobs:
             - name: installing_dependencies
               run: |
                 cd api
+                ls
                 pip install -r requirements.txt --target ./package
                 cd package
                 ls
                 cd ..
                 ls
-                
+
                  
 
 
