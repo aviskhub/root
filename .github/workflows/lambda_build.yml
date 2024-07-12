@@ -30,6 +30,10 @@ jobs:
                 cd package
                 echo "inside package"
                 ls
+                zip -r ../my_deployment_package.zip .
+                ls
+                cd ..
+                ls
                
 
                  
