@@ -33,6 +33,7 @@ jobs:
                 zip -r ../my_deployment_package.zip .
                 ls
                 cd ..
+                echo "comming out of package"
                 ls
                
 
