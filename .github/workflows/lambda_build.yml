@@ -28,9 +28,9 @@ jobs:
                 ls
                 pip install -r requirements.txt --target ./package
                 cd package
+                echo "inside package"
                 ls
-                cd ..
-                ls
+               
 
                  
 
