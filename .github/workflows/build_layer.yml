@@ -36,8 +36,10 @@ jobs:
         run: |
           cd ./api/sayingthanks
           pip install -r requirements.txt --target ../Layers/python/lib/python3.12
-          cd ../Layers
-          zip -r layers.zip ./python/lib/python3.12
+          cd ../Layers/python/lib/python3.12
+          zip -r ../../../layers.zip .
+          ls
+          cd ../../../
           ls
           pwd
           vi layers.zip
