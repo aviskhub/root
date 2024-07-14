@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: testing
-        runs: |
+        run: |
           ls
           cd api/Layers
           ls        
