@@ -39,6 +39,7 @@ jobs:
                 echo "after zipping"
                 pwd
                 ls
+                echo "${{ github.workspace }}"
                
 
                  
