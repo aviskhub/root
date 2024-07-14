@@ -62,6 +62,14 @@ jobs:
            ls
            cd terraform
            terraform plan 
+      - name: Terraform apply
+        run: |
+            cd terraform
+            terraform apply \
+            -auto-approve 
+
+
+
 
 
                    
