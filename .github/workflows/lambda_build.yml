@@ -25,21 +25,16 @@ jobs:
             - name: installing_dependencies
               run: |
                 cd api/sayingthanks
-                ls
                 pip install -r requirements.txt --target ./package
                 cd package
-                echo "inside package"
-                ls
                 zip -r ../my_deployment_package.zip .
                 ls
                 cd ..
                 echo "comming out of package"
                 ls
                 zip my_deployment_package.zip lambda_function.py
-                echo "after zipping"
-                pwd
                 ls
-                aws s3 cp ${{ github.workspace }}/api/sayingthanks/lambda_function.py s3://python-package-api/lambda_function.py
+                aws s3 cp ${{ github.workspace }}/api/sayingthanks/lambda_function.py s3://python-package-api/lambda_function.py --region ap-south-1
                
 
                  
