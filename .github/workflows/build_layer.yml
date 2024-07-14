@@ -38,7 +38,7 @@ jobs:
           pip install -r requirements.txt --target ../Layers/python/lib/python3.12
           cd ../Layers/python/lib/python3.12
           zip -r ../../../layers.zip .
-          pwd
+          pwd 
           ls
           cd ../../../
           pwd
