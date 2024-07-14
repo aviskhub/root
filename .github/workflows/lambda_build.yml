@@ -42,7 +42,7 @@ jobs:
                 role-session-name: aws-main-role  
             - name: Copying-package
               run: |  
-              aws s3 cp ${{ github.workspace }}/api/sayingthanks/my_deployment_package.zip s3://python-package-api/api/sayingthanks/lambda_function.py --region ap-south-1
+                aws s3 cp ${{ github.workspace }}/api/sayingthanks/my_deployment_package.zip s3://python-package-api/api/sayingthanks/lambda_function.py --region ap-south-1
             
 
                  
