@@ -37,14 +37,7 @@ jobs:
           cd ./api/sayingthanks
           pip install -r requirements.txt --target ../Layers/python/lib/python3.12
           cd ../Layers/python/lib/python3.12
-          zip -r ../../../layers.zip .
-          pwd 
           ls
-          cd ../../../
-          pwd
-          ls
-          pwd
-          vi layers.zip
   Upload-layer:
     name: Upload-layer
     runs-on: ubuntu-latest
