@@ -35,11 +35,9 @@ jobs:
       - name: Installing-dependencies
         run: |
           cd ./api/sayingthanks
-          pip install -r requirements.txt --target ../Layers/python/lib/python3.12
-          echo "python3.12"
-          ls
+          pip install -r requirements.txt --target ../Layers/python/lib/python3.12/site-packages
           cd ../Layers
-          zip -r layer.zip ./python/lib/python3.12
+          zip -r layer.zip ./python/lib/python3.12/site-packages
       - name: Upload-layer-artifact
         uses: actions/upload-artifact@v4
         with:
