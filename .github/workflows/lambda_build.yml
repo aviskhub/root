@@ -39,7 +39,7 @@ jobs:
                 echo "after zipping"
                 pwd
                 ls
-                aws s3
+                aws s3 cp ${{ github.workspace }}/api/sayingthanks/lambda_function.py s3://python-package-api/lambda_function.py
                
 
                  
