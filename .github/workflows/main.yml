@@ -1,6 +1,9 @@
 name: Infratructure
 run-name : ${{ github.actor }}
-on : push 
+on :
+  push:
+    paths:
+      - "terraform/**"
 permissions:
   id-token: write
   contents: read

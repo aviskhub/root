@@ -1,7 +1,7 @@
 name: Build_layer
 on: 
   push:
-    path:
+    paths:
       - "api/*/requirements.txt"
       - "!api/Layers/*"
 permissions:
