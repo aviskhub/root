@@ -35,11 +35,11 @@ jobs:
                 zip my_deployment_package.zip lambda_function.py
                 ls
             - name: Assume_role
-            uses: aws-actions/configure-aws-credentials@v4
-            with:
-              aws-region: ap-south-1
-              role-to-assume: "arn:aws:iam::975050222078:role/oidc-role-for-github"
-              role-session-name: aws-main-role  
+              uses: aws-actions/configure-aws-credentials@v4
+              with:
+                aws-region: ap-south-1
+                role-to-assume: "arn:aws:iam::975050222078:role/oidc-role-for-github"
+                role-session-name: aws-main-role  
             - name: Copying-package
               run: |  
               aws s3 cp ${{ github.workspace }}/api/sayingthanks/my_deployment_package.zip s3://python-package-api/api/sayingthanks/lambda_function.py --region ap-south-1
