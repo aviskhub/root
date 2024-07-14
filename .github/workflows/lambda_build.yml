@@ -9,7 +9,7 @@ permissions:
     id-token: write
     contents: read
 jobs:
-    Build_lambda:
+    Build_lambda_and_upload:
           name: Build_lambda
           runs-on: ubuntu-latest
           steps:
@@ -31,13 +31,8 @@ jobs:
               run: |
                 cd api/sayingthanks
                 pip install -r requirements.txt --target ./package
-                cd package
-                zip -r ../my_deployment_package.zip .
-                ls
-                cd ..
-                echo "comming out of package"
-                ls
-                zip my_deployment_package.zip lambda_function.py
+                zip -r lambda_layer.zip ./package
+                zip lambda_layer.zip lambda_function.py
                 ls
             - name: Assume_role
               uses: aws-actions/configure-aws-credentials@v4
@@ -47,7 +42,7 @@ jobs:
                 role-session-name: aws-main-role  
             - name: Copying-package
               run: |  
-                aws s3 cp ${{ github.workspace }}/api/sayingthanks/my_deployment_package.zip s3://python-package-api/api/sayingthanks/lambda_function.zip --region ap-south-1
+                aws s3 cp ${{ github.workspace }}/api/sayingthanks/lambda_function.zip s3://python-package-api/api/sayingthanks/lambda_function.zip --region ap-south-1
             
 
                  
