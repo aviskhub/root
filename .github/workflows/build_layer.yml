@@ -38,13 +38,13 @@ jobs:
           pip install -r requirements.txt --target ../Layers/python/lib/python3.12
           echo "python3.12"
           ls
-          cd ..
-          zip -r layer.zip ./Layers/python/lib/python3.12
+          cd ../Layers
+          zip -r layer.zip ./python/lib/python3.12
       - name: Upload-layer-artifact
         uses: actions/upload-artifact@v4
         with:
           name: layer-artifact
-          path: ${{ github.workspace }}/api/layer.zip
+          path: ${{ github.workspace }}/api/Layers/layer.zip
   Upload-layer-to-s3:
     name: Upload-layer
     runs-on: ubuntu-latest
