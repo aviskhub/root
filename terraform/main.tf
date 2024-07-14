@@ -27,7 +27,7 @@ resource "aws_iam_role" "iam-role-say_hello" {
 
 resource "aws_lambda_function" "lambda-fucntion-say_hello" {
   function_name = "say_hello"
-  role = aws_iam_role.iam-role-say_hello
+  role = aws_iam_role.iam-role-say_hello.arn
   handler = "lambda_function.lambda_handler"
   s3_bucket = "python-package-api"
   s3_key = "api/sayingthanks/lambda_function.zip"
