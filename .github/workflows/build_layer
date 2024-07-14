@@ -1,0 +1,44 @@
+name: Build_layer
+on: push 
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  Checkout-code:
+    name: Checkout-code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout-code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Upload-artifact
+        uses: actions/upload-artifact@v4 
+        with:
+          name: Layer 
+          path: .
+  Build_layer:
+    name: Build_layer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download-artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: Layer
+          path: .
+      - name: Setup-python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+          cache: pip 
+      - name: Installing-dependencies
+        run: |
+          cd ./api/sayingthanks
+          pip install -r requirement.txt --target ../Layers/python/lib/python3.12
+          cd ../Layers
+          zip -r layers.zip ./python/lib/python3.12
+               
+
+
+
+     
