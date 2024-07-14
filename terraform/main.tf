@@ -31,6 +31,6 @@ resource "aws_lambda_function" "lambda-fucntion-say_hello" {
   handler = "lambda_function.lambda_handler"
   s3_bucket = "python-package-api"
   s3_key = "api/sayingthanks/lambda_function.zip"
-  runtime = "Python 3.9"
+  runtime = "Python3.9"
 }
 
