@@ -36,8 +36,10 @@ jobs:
         run: |
           cd ./api/sayingthanks
           pip install -r requirements.txt --target ../Layers/python/lib/python3.12
+          echo "python3.12"
+          ls
           cd ..
-          zip layer.zip ./Layers/python/lib/python3.12/
+          zip -r layer.zip ./Layers/python/lib/python3.12
       - name: Upload-layer-artifact
         uses: actions/upload-artifact@v4
         with:
