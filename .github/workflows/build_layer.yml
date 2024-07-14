@@ -1,5 +1,9 @@
 name: Build_layer
-on: push 
+on: 
+  push:
+    path:
+      - "api/*/requirements.txt"
+      - "!api/Layers/*"
 permissions:
   id-token: write
   contents: read
