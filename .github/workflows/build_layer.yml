@@ -40,6 +40,7 @@ jobs:
           zip -r layers.zip ./python/lib/python3.12
           ls
           pwd
+          vi layers.zip
   Upload-layer:
     name: Upload-layer
     runs-on: ubuntu-latest
