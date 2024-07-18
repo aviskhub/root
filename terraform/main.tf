@@ -19,10 +19,8 @@ data "aws_iam_policy_document" "lambda-role-permission" {
     statement {
     effect = "Allow"
     actions = ["logs:*"]
-    principals {
-      type = "Service"
-      identifiers = ["lambda.amazonaws.com"]
-    }
+    sid = "permssion to alllow lambda to log"
+    resources = ["*"] 
   }
 }
 
