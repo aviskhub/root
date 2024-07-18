@@ -35,6 +35,7 @@ resource "aws_lambda_function" "lambda-fucntion-say_hello" {
   handler = "lambda_function.lambda_handler"
   s3_bucket = "python-package-api"
   s3_key = "api/sayingthanks/lambda_function.zip"
+  s3_object_version = data.aws_s3_object.lambda-code-say_hello.version_id
   runtime = "python3.9" 
 }
 # creating lamda layer : keeping this layer common for all the lambda which would be created
