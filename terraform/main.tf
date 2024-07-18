@@ -13,6 +13,14 @@ data "aws_iam_policy_document" "lambda-role-say_hello" {
       identifiers = ["lambda.amazonaws.com"]
     }
   }
+  statement {
+    effect = "Allow"
+    actions = ["logs:*"]
+    principals {
+      type = "Service"
+      identifiers = ["lambda.amazonaws.com"]
+    }
+  }
 }
 
 data "aws_s3_object" "lambda-code-say_hello" {
