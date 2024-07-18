@@ -47,7 +47,7 @@ resource "aws_iam_policy" "lambda-role-policy" {
 }
 
 resource "aws_iam_role_policy_attachment" "attachment" {
-  role = aws_iam_role.iam-role-say_hello.arn
+  role = aws_iam_role.iam-role-say_hello.name
   policy_arn = aws_iam_policy.lambda-role-policy.arn
 }
 
