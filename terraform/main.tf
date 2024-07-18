@@ -19,7 +19,7 @@ data "aws_iam_policy_document" "lambda-role-permission" {
     statement {
     effect = "Allow"
     actions = ["logs:*"]
-    sid = "permssion to alllow lambda to log"
+    sid = "lambdatocloudwatch"
     resources = ["*"] 
   }
 }
