@@ -39,14 +39,13 @@ jobs:
       - name: Installing-dependencies
         run: |
           cd ./api/sayingthanks
-          pip install -r requirements.txt --target ../Layers/python/lib/python3.12/site-packages
-          cd ../Layers
+          pip install -r requirements.txt --target ./python/lib/python3.12/site-packages
           zip -r layer.zip ./python/lib/python3.12/site-packages
       - name: Upload-layer-artifact
         uses: actions/upload-artifact@v4
         with:
           name: layer-artifact
-          path: ${{ github.workspace }}/api/Layers/layer.zip
+          path: ${{ github.workspace }}/api/sayingthanks/layer.zip
   Upload-layer-to-s3:
     name: Upload-layer
     runs-on: ubuntu-latest
