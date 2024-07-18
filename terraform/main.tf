@@ -19,6 +19,10 @@ data "aws_s3_object" "lambda-code-say_hello" {
   bucket = "python-package-api"
   key = "api/sayingthanks/lambda_function.zip"
 }
+data "aws_s3_object" "lambda-layer" {
+  bucket = "python-package-api"
+  key = "api/layer/lambda_layer.zip"
+}
 
 resource "aws_iam_role" "iam-role-say_hello" {
   assume_role_policy = data.aws_iam_policy_document.lambda-role-say_hello.json
@@ -33,6 +37,16 @@ resource "aws_lambda_function" "lambda-fucntion-say_hello" {
   s3_key = "api/sayingthanks/lambda_function.zip"
   runtime = "python3.9" 
 }
-# creating lamda layer 
+# creating lamda layer : keeping this layer common for all the lambda which would be created
+
+resource "aws_lambda_layer_version" "lambda-layer" {
+  layer_name = "lambda-layer"
+  compatible_architectures = ["x86_64"]
+  description = "Lambda layer for all the lambda dependency"
+  compatible_runtimes = ["python3.9"]
+  s3_bucket = "python-package-api"
+  s3_key = "api/layer/lambda_layer.zip"
+  s3_object_version = data.aws_s3_object.lambda-layer.version_id
+}
 
 
