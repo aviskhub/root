@@ -30,7 +30,7 @@ jobs:
             - name: Zipping_code
               run: |
                 cd ./api/sayingthanks
-                mkdir ./python/lib/python3.12/site-packages
+                mkdir -p ./python/lib/python3.12/site-packages
                 cp lambda_function.py ./python/lib/python3.12/site-packages
                 # zip  lambda_function.zip ./python/lib/python3.12/site-packages
                 ls
