@@ -34,7 +34,7 @@ resource "aws_lambda_function" "lambda-fucntion-say_hello" {
   role = aws_iam_role.iam-role-say_hello.arn
   handler = "lambda_function.lambda_handler"
   s3_bucket = "python-package-api"
-  s3_key = "api/sayingthanks/lambda_function.zip"
+  s3_key = data.aws_s3_object.lambda-code-say_hello.key
   s3_object_version = data.aws_s3_object.lambda-code-say_hello.version_id
   runtime = "python3.9" 
 }
