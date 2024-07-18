@@ -33,4 +33,6 @@ resource "aws_lambda_function" "lambda-fucntion-say_hello" {
   s3_key = "api/sayingthanks/lambda_function.zip"
   runtime = "python3.9" 
 }
+# creating lamda layer 
+
 
