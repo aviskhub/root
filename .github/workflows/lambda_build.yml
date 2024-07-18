@@ -30,7 +30,7 @@ jobs:
             - name: Zipping_code
               run: |
                 cd ./api/sayingthanks
-                zip  lambda_function.zip ./python/lib/python3.12/site-packages
+                # zip  lambda_function.zip ./python/lib/python3.12/site-packages
                 ls
                 pwd    
             - name: Assuming_role
