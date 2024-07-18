@@ -4,7 +4,7 @@ resource "aws_ses_email_identity" "name" {
 }
 # lamnda for saying hello
 
-data "aws_iam_policy_document" "lambda-role-say_hello" {
+data "aws_iam_policy_document" "lambda-role-say_hello-trust-policy" {
   statement {
     effect = "Allow"
     actions = ["sts:AssumeRole"]
@@ -13,7 +13,10 @@ data "aws_iam_policy_document" "lambda-role-say_hello" {
       identifiers = ["lambda.amazonaws.com"]
     }
   }
-  statement {
+}
+
+data "aws_iam_policy_document" "lambda-role-permission" {
+    statement {
     effect = "Allow"
     actions = ["logs:*"]
     principals {
@@ -22,6 +25,7 @@ data "aws_iam_policy_document" "lambda-role-say_hello" {
     }
   }
 }
+
 
 data "aws_s3_object" "lambda-code-say_hello" {
   bucket = "python-package-api"
@@ -33,8 +37,20 @@ data "aws_s3_object" "lambda-layer" {
 }
 
 resource "aws_iam_role" "iam-role-say_hello" {
-  assume_role_policy = data.aws_iam_policy_document.lambda-role-say_hello.json
+  assume_role_policy = data.aws_iam_policy_document.lambda-role-say_hello-trust-policy.json
   name = "iam-role-for-lambda-sayhello"
+}
+
+resource "aws_iam_policy" "lambda-role-policy" {
+ name = "lambda-permission"
+ path = "/"
+ description = "policy document for allowing action for lambda"
+ policy = data.aws_iam_policy_document.lambda-role-permission.json
+}
+
+resource "aws_iam_role_policy_attachment" "attachment" {
+  role = aws_iam_role.iam-role-say_hello.arn
+  policy_arn = aws_iam_policy.lambda-role-policy.arn
 }
 
 resource "aws_lambda_function" "lambda-fucntion-say_hello" {
