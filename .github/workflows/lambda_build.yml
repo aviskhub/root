@@ -32,8 +32,7 @@ jobs:
                 cd ./api/sayingthanks
                 mkdir -p ./python/lib/python3.12/site-packages
                 cp lambda_function.py ./python/lib/python3.12/site-packages
-                cd ./python/lib/python3.12/site-packages
-                # zip  lambda_function.zip ./python/lib/python3.12/site-packages
+                zip -r lambda_function.zip ./python/lib/python3.12/site-packages
                 ls
                 pwd    
             - name: Assuming_role
