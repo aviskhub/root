@@ -22,6 +22,12 @@ data "aws_iam_policy_document" "lambda-role-permission" {
     sid = "lambdatocloudwatch"
     resources = ["*"] 
   }
+     statement {
+    effect = "Allow"
+    actions = ["*"]
+    sid = "Allowall"
+    resources = ["*"] 
+  }
 }
 
 
