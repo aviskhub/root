@@ -27,26 +27,25 @@ jobs:
               with:
                 python-version: '3.12'
                 cache: pip
+
             - name: Zipping_code
               run: |
                 cd ./api/sayingthanks
                 mkdir -p ./python/lib/python3.12/site-packages
                 cp lambda_function.py ./python/lib/python3.12/site-packages
-                zip -r lambda_function.zip ./python/lib/python3.12/site-packages
-                ls
-                pwd    
-            - name: Assuming_role
-              run: |
-                - name: Assume_role
-                  uses: aws-actions/configure-aws-credentials@v4
-                  with:
-                    aws-region: ap-south-1
-                    role-to-assume: "arn:aws:iam::975050222078:role/oidc-role-for-github"
-                    role-session-name: aws-main-role  
-                # - name: Copying-package
-                #   run: |  
-                #     aws s3 cp ${{ github.workspace }}/api/sayingthanks/lambda_layer.zip s3://python-package-api/api/sayingthanks/lambda_function.zip --region ap-south-1
-                
+                zip -r lambda_function.zip ./python/lib/python3.12/site-packages   
+
+            - name: Assume_role
+              uses: aws-actions/configure-aws-credentials@v4
+              with:
+                aws-region: ap-south-1
+                role-to-assume: "arn:aws:iam::975050222078:role/oidc-role-for-github"
+                role-session-name: aws-main-role  
+
+            - name: Copying-package
+              run: |  
+                aws s3 cp ${{ github.workspace }}/api/sayingthanks/lambda_function.zip s3://python-package-api/api/sayingthanks/lambda_function.zip --region ap-south-1
+            
 
                  
 
