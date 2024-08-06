@@ -24,7 +24,7 @@ data "aws_iam_policy_document" "lambda-role-permission" {
   }
      statement {
     effect = "Allow"
-    actions = ["*"]
+    actions = ["logs:*"]
     sid = "Allowall"
     resources = ["*"] 
   }
