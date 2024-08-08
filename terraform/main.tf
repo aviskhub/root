@@ -44,7 +44,7 @@ resource "aws_iam_role" "iam-role-say_hello" {
   assume_role_policy = data.aws_iam_policy_document.lambda-role-say_hello-trust-policy.json
   name = "iam-role-for-lambda-sayhello"
 }
-
+ 
 resource "aws_iam_policy" "lambda-role-policy" {
  name = "lambda-permission"
  path = "/"
