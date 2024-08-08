@@ -14,7 +14,7 @@ def lambda_handler(event, context):
     headers = event['headers']
     #decoding multipart data
     decoder = MultipartDecoder(body,headers['Content-Type'])
-    print(decoder)
+    print(decoder.parts)
     for part in decoder.parts:
      print(part.headers)  # Print headers for each part
      print(part.text) 
