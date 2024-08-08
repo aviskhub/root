@@ -70,7 +70,7 @@ resource "aws_lambda_function" "lambda-fucntion-say_hello" {
 # creating lamda layer : keeping this layer common for all the lambda which would be created
 
 resource "aws_lambda_layer_version" "lambda-layer" {
-  layer_name = "lambda-layer"
+  layer_name = "lambda-layer" 
   compatible_architectures = ["x86_64"]
   description = "Lambda layer for all the lambda dependency"
   compatible_runtimes = ["python3.9"]
