@@ -1,5 +1,6 @@
 import json
 import boto3
+import os
 import requests
 client = boto3.client('ses')
 def lambda_handler(event, context):
@@ -8,7 +9,7 @@ def lambda_handler(event, context):
     r = requests.get('https://api.github.com')
     return { 
         'statusCode': 200,
-        'body': json.dumps()
+        'body': json.dumps(event)
     }  
          
  
