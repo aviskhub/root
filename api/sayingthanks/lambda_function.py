@@ -2,13 +2,13 @@ import json
 import boto3
 import os
 
+
 client = boto3.client('ses')
 def lambda_handler(event, context):
     # TODO implement
     print("printing all the environment variable", os.environ)
     print("printing the current directory", os.getcwd())
     print("printing the user", os.getlogin())
-
     # print("testing",event['path'])
     # print("resource:",event['resource'])
     # print(event)
@@ -37,5 +37,4 @@ def lambda_handler(event, context):
         'statusCode': 200,
         'body': json.dumps(event)
     }  
-         
          
