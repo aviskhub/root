@@ -30,7 +30,7 @@ data "aws_iam_policy_document" "lambda-role-permission" {
   }
 }
 
- 
+  
 data "aws_s3_object" "lambda-code-say_hello" {
   bucket = "python-package-api"
   key = "api/sayingthanks/lambda_function.zip"
