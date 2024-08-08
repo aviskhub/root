@@ -1,6 +1,7 @@
 import json
 import boto3
 import os
+from requests_toolbelt import MultipartDecoder
 
 
 client = boto3.client('ses')
@@ -9,6 +10,17 @@ def lambda_handler(event, context):
     print("printing all the environment variable", os.environ)
     print("printing the current directory", os.getcwd())
     print("printing the user", os.getlogin())
+    body = event['body']
+    headers = event['headers']
+    #decoding multipart data
+    decoder = MultipartDecoder(body,headers['Content-Type'])
+    print(decoder)
+    for part in decoder.parts:
+     print(part.headers)  # Print headers for each part
+     print(part.text) 
+
+
+
     # print("testing",event['path'])
     # print("resource:",event['resource'])
     # print(event)
@@ -35,6 +47,6 @@ def lambda_handler(event, context):
     # print("this is of type", type(event))
     return { 
         'statusCode': 200,
-        'body': json.dumps(event)
+        'body': json.dumps(decoder)
     }  
          
