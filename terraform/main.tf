@@ -65,6 +65,7 @@ resource "aws_lambda_function" "lambda-fucntion-say_hello" {
   s3_key = data.aws_s3_object.lambda-code-say_hello.key
   s3_object_version = data.aws_s3_object.lambda-code-say_hello.version_id
   runtime = "python3.9" 
+  layers = [ aws_lambda_layer_version.lambda-layer ]
 }
 # creating lamda layer : keeping this layer common for all the lambda which would be created
 
