@@ -13,7 +13,7 @@ data "aws_iam_policy_document" "lambda-role-say_hello-trust-policy" {
       identifiers = ["lambda.amazonaws.com"]
     }
   }
-}
+} 
 
 data "aws_iam_policy_document" "lambda-role-permission" {
     statement {
