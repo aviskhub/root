@@ -1,7 +1,7 @@
 import json
 import boto3
 import os
-from requests_toolbelt import MultipartDecoder
+from requests_toolbelt.multipart.decoder import MultipartDecoder
 
 
 client = boto3.client('ses')
