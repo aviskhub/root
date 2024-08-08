@@ -77,7 +77,7 @@ resource "aws_lambda_layer_version" "lambda-layer" {
   s3_key = "api/layer/lambda_layer.zip"
   s3_object_version = data.aws_s3_object.lambda-layer.version_id
 } 
-
+ 
  
 
 
