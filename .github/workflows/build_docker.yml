@@ -9,5 +9,5 @@ jobs:
         steps:
             - name: testing 
               run: |
-                which yum
+                which apt
                 
