@@ -1,0 +1,35 @@
+name: "Testing some random actions"
+on: workflow_dispatch
+
+
+jobs:
+    firstjob:
+        name: first-job
+        runs-on: ubuntu-latest
+        steps:
+         - name: first-step
+           run: | 
+              echo "first job"
+         - name: second step
+           run: |
+             echo "second job"
+    secondjob:
+        name: second-job
+        runs-on: ubuntu-latest
+        steps:
+            - name: second first step
+              run: |
+               echo "second first"
+            - name: second second step
+              run: |
+               echo "second second"   
+    third-job:
+        name: third job 
+        runs-on: ubuntu-latest
+        steps:
+            - name: third first
+              run: |
+               echo "third first"
+            - name: third second 
+              run: |
+               echo "third second"              
