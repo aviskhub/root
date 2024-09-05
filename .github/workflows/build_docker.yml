@@ -1,0 +1,13 @@
+name: "Build Docker file"
+
+on: workflow_dispatch
+
+jobs:
+    testing:
+        name: testing 
+        runs-on: ubuntu-latest
+        steps:
+            - name: testing 
+              run: |
+                which yum
+                
