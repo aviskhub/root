@@ -39,7 +39,7 @@ jobs:
               run: |
                echo "third first"
             - name: third second 
-              run: |s
+              run: |
                echo "third second"   
     forth-job:
       name: forth job
