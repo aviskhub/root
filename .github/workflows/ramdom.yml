@@ -6,10 +6,14 @@ jobs:
     firstjob:
         name: first-job
         runs-on: ubuntu-latest
+        strategy:
+          matrix:
+            os: [linux,mac,windows]
         steps:
          - name: first-step
            run: | 
               echo "first job"
+              echo "${{matrix.os}}"
          - name: second step
            run: |
              echo "second job"
