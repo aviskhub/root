@@ -3,11 +3,27 @@ name: "Build Docker file"
 on: workflow_dispatch
 
 jobs:
-    testing:
-        name: testing 
+    Checkout:
+        name: Checkout and Creating artifact
         runs-on: ubuntu-latest
         steps:
-            - name: testing 
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 0
+                path: .
+
+
+    Building:
+        name: Buiding docker file 
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+               fetch-depth: 0
+               path: .
+            - name: Installing Docker  
               run: |
                 cat /etc/os-release
                 sudo apt update
@@ -17,5 +33,9 @@ jobs:
                 sudo apt update
                 sudo apt install -y docker-ce
                 docker version
-                    
+            - name: Building image
+              run: |
+                docker build -f ${{github.workspace }}/dockerfile/baseimage -t basefile .
+                docker image list   
+         
                 
