@@ -20,10 +20,10 @@ jobs:
               id: dockerfile
               run: | 
                  data=()
-                 files=$(git diff --name-only ${{github.event.before}} ${{github.event.after}} | \
+                 abc=$(git diff --name-only ${{github.event.before}} ${{github.event.after}} | \
                    grep dockerfile | cut -d "/" -f 2 | sort -u )
-                 echo "$files"  
-                 echo "data=$files" >> "$GITHUB_OUTPUT"
+                 echo "$abc"  
+                 echo "data=$abc" >> "$GITHUB_OUTPUT"
 
                 #  if [[ -z files ]] 
                 #  then
