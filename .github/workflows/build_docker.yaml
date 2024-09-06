@@ -17,11 +17,14 @@ jobs:
               with:
                 fetch-depth: 0
             - name: Dockerfile to build
+              id: dockerfile
               run: | 
                  data=()
                  files=$(git diff --name-only ${{github.event.before}} ${{github.event.after}} | \
                    grep dockerfile | cut -d "/" -f 2 | sort -u )
                  echo "$files"  
+                 echo "data=$files" >> "$GITHUB_OUTPUT"
+
                 #  if [[ -z files ]] 
                 #  then
                 #   echo "nothing to build"
@@ -44,11 +47,10 @@ jobs:
             #       sudo apt update
             #       sudo apt install -y docker-ce
             #       docker version
-            # - name: Building image
-            #   run: |
-            #     for fruit in "${data[@]}"
-            #     do
-            #     echo "Fruit: $fruit"
-            #     done 
+            - name: Building image
+              run: |
+                data=${{steps.dockerfile.outputs.data}}
+                echo "printing >> $data"
+
         
                 
