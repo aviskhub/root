@@ -23,19 +23,22 @@ jobs:
               with:
                fetch-depth: 0
                path: .
-            - name: Installing Docker  
+            - name: Dockerfile to build 
               run: |
-                cat /etc/os-release
-                sudo apt update
-                sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
-                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-                sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-                sudo apt update
-                sudo apt install -y docker-ce
-                docker version
-            - name: Building image
-              run: |
-                docker build -f ${{github.workspace }}/dockerfile/baseimage -t basefile .
-                docker image list   
+                git diff --name-only ${{ github.event.before }} ${{ github.event.after }}  
+            # - name: Installing Docker  
+            #   run: |
+            #     cat /etc/os-release
+            #     sudo apt update
+            #     sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+            #     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+            #     sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+            #     sudo apt update
+            #     sudo apt install -y docker-ce
+            #     docker version
+            # - name: Building image
+            #   run: |
+            #     docker build -f ${{github.workspace }}/dockerfile/baseimage -t basefile .
+            #     docker image list   
          
                 
