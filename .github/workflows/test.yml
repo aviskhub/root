@@ -15,9 +15,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Fetch all commits
-        run: git fetch --prune --unshallow
-
       - name: Print commit IDs
         run: |
           echo "Current commit SHA: ${{ github.sha }}"
