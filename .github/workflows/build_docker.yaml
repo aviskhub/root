@@ -24,7 +24,7 @@ jobs:
                fetch-depth: 0
             - name: Dockerfile to build 
               run: |
-                git diff ${{github.event.before}} ${{github.event.after}}  
+                echo "${{ github.event.before }}" 
             # - name: Installing Docker  
             #   run: |
             #     cat /etc/os-release
