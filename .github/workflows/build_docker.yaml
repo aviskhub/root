@@ -39,8 +39,10 @@ jobs:
                   docker version
             - name: Building image
               run: |
-                for i in $data
+                for i in ${data[@]}
+                do
                 docker build -f ${{github.workspace }}/dockerfile/$i -t $i .
+                done
                 docker image list   
         
                 
