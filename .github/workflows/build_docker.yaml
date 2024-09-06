@@ -2,17 +2,6 @@ name: "Build Docker file"
 on: workflow_dispatch
 
 jobs:
-    Checkout:
-        name: Checkout and Creating artifact
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-              with:
-                fetch-depth: 0
-                path: .
-
-
     Building:
         name: Buiding docker file 
         runs-on: ubuntu-latest
@@ -24,10 +13,12 @@ jobs:
             #     git fetch origin
             #     git log --oneline --graph --decorate --all
                 
-            - name: Dockerfile to build 
+            - name: Echo commit SHAs
               run: |
-                echo "${{ github.event.before }}" 
-            # - name: Installing Docker  
+                echo "Before: ${{ github.event.before }}"
+                echo "After: ${{ github.event.after }}"
+                git log
+              # - name: Installing Docker  
             #   run: |
             #     cat /etc/os-release
             #     sudo apt update
