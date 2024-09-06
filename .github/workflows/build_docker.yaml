@@ -14,16 +14,17 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v4
-            # - name: Show commit history
-            #   run: |
-            #     git fetch origin
-            #     git log --oneline --graph --decorate --all
-                
-            - name: Echo commit SHAs
-              run: |
-                echo "Before: ${{ github.event.before }}"
-                echo "After: ${{ github.event.after }}"
-                git log
+            - name: Dockerfile to build
+              run: | 
+                 data=()
+                 for i in $(git diff --name-only ${{github.event.before}} ${{github.event.after}} | \
+                   grep dockerfile | cut -d "/" -f 2 | sort -u )
+                 do
+                   echo "$1"
+                   data+=($i)
+                 done
+                 echo "Files that needs to be build ${data[@]}"
+                      
               # - name: Installing Docker  
             #   run: |
             #     cat /etc/os-release
