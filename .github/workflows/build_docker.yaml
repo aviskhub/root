@@ -19,12 +19,18 @@ jobs:
             - name: Dockerfile to build
               run: | 
                  data=()
-                 for i in $(git diff --name-only ${{github.event.before}} ${{github.event.after}} | \
+                 files = $(git diff --name-only ${{github.event.before}} ${{github.event.after}} | \
                    grep dockerfile | cut -d "/" -f 2 | sort -u )
-                 do
+                 if [[ -z files ]] 
+                 then
+                  echo "nothing to build"
+                 else 
+                  for i in "{$files}"
+                  do
                    echo "$i"
                    data+=($i)
-                 done
+                  done
+                 fi 
                  echo "Files that needs to be build ${data[@]}"
                       
             - name: Installing Docker  
