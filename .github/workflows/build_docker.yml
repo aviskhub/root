@@ -21,10 +21,12 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
               with:
+               name: code
                fetch-depth: 0
-               path: .
             - name: Dockerfile to build 
               run: |
+                ls 
+                pwd
                 git diff --name-only ${{ github.event.before }} ${{ github.event.after }}  
             # - name: Installing Docker  
             #   run: |
