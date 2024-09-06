@@ -1,0 +1,24 @@
+name: Find Commit IDs
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  find-commits:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Fetch all commits
+        run: git fetch --prune --unshallow
+
+      - name: Print commit IDs
+        run: |
+          echo "Current commit SHA: ${{ github.sha }}"
+          echo "Previous commit SHA: ${{ github.event.before }}"
