@@ -22,24 +22,25 @@ jobs:
                  for i in $(git diff --name-only ${{github.event.before}} ${{github.event.after}} | \
                    grep dockerfile | cut -d "/" -f 2 | sort -u )
                  do
-                   echo "$1"
+                   echo "$i"
                    data+=($i)
                  done
                  echo "Files that needs to be build ${data[@]}"
                       
-              # - name: Installing Docker  
-            #   run: |
-            #     cat /etc/os-release
-            #     sudo apt update
-            #     sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
-            #     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-            #     sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-            #     sudo apt update
-            #     sudo apt install -y docker-ce
-            #     docker version
-            # - name: Building image
-            #   run: |
-            #     docker build -f ${{github.workspace }}/dockerfile/baseimage -t basefile .
-            #     docker image list   
-         
+            - name: Installing Docker  
+              run: |
+                  cat /etc/os-release
+                  sudo apt update
+                  sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+                  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+                  sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+                  sudo apt update
+                  sudo apt install -y docker-ce
+                  docker version
+            - name: Building image
+              run: |
+                for i in $data
+                docker build -f ${{github.workspace }}/dockerfile/$i -t $i .
+                docker image list   
+        
                 
