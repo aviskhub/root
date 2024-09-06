@@ -1,6 +1,9 @@
 name: "Build Docker file"
 on: workflow_dispatch
 
+permissions:
+  id-token: write
+  contents: read
 jobs:
     Building:
         name: Buiding docker file 
