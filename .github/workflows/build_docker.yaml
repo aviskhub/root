@@ -39,11 +39,9 @@ jobs:
                   docker version
             - name: Building image
               run: |
-                for i in ${data[@]}
+                for fruit in "${data[@]}"
                 do
-                echo $i
-                # docker build -f ${{github.workspace }}/dockerfile/$i -t $i .
-                done
-                docker image list   
+                echo "Fruit: $fruit"
+                done 
         
                 
