@@ -11,6 +11,8 @@ jobs:
     Building:
         name: Buiding docker file 
         runs-on: ubuntu-latest
+        outputs:
+          jsondata: ${{steps.dockerfile.outputs.json}}
         steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -25,6 +27,11 @@ jobs:
                  jsondata=$(echo "$abc" | jq -R . | jq -s)  
                  echo "$abc"
                  echo "$jsondata"
+                 echo "json=$jsondata" >> GITHUB_OUTPUT
+            - name: Build the docker
+              run: |
+                 json= ${{steps.dockerfile.json}}   
+                 echo " the output value >  $json"  
                 #  echo "$abc"
                 #  for i in "${abc}"
                 #  do
