@@ -26,6 +26,7 @@ jobs:
                  for i in "${abc}"
                  do
                    data+=("$i")
+                   echo "just"
                  done  
                  echo "printing array value >> ${data[@]}" 
                  echo "testing"
