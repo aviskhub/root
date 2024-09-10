@@ -25,7 +25,7 @@ jobs:
                  echo "$abc"
                  for i in "${abc}"
                  do
-                   data=data+("$i")
+                   data+=("$i")
                  done  
                  echo "printing array value >> ${data[@]}"  
                 #  echo "data=$abc" >> "$GITHUB_OUTPUT"
