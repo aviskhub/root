@@ -22,15 +22,18 @@ jobs:
                  data=()
                  abc=$(git diff --name-only ${{github.event.before}} ${{github.event.after}} | \
                    grep dockerfile | cut -d "/" -f 2 | sort -u )
+                 jsondata=$(echo "$abc")  
                  echo "$abc"
-                 for i in "${abc}"
-                 do
-                   data+=("$i")
-                   echo "just"
-                 done  
-                 echo "printing array value >> ${data[@]}" 
-                 echo "testing"
-                 echo "${#data}" 
+                 echo "jsondata"
+                #  echo "$abc"
+                #  for i in "${abc}"
+                #  do
+                #    data+=("$i")
+                #    echo "just"
+                #  done  
+                #  echo "printing array value >> ${data[@]}" 
+                #  echo "testing"
+                #  echo "${#data}" 
                 #  echo "data=$abc" >> "$GITHUB_OUTPUT"
 
                 #  if [[ -z files ]] 
