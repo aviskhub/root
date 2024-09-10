@@ -22,8 +22,12 @@ jobs:
                  data=()
                  abc=$(git diff --name-only ${{github.event.before}} ${{github.event.after}} | \
                    grep dockerfile | cut -d "/" -f 2 | sort -u )
-                 echo "$abc"  
-                 echo "data=$abc" >> "$GITHUB_OUTPUT"
+                 echo "$abc"
+                 for i in "${abc}"
+                 do
+                   echo $i
+                 done    
+                #  echo "data=$abc" >> "$GITHUB_OUTPUT"
 
                 #  if [[ -z files ]] 
                 #  then
