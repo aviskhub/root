@@ -22,7 +22,7 @@ jobs:
                  data=()
                  abc=$(git diff --name-only ${{github.event.before}} ${{github.event.after}} | \
                    grep dockerfile | cut -d "/" -f 2 | sort -u )
-                 jsondata=$(echo "$abc" | jq -R .)  
+                 jsondata=$(echo "$abc" | jq -R . | jq -q)  
                  echo "$abc"
                  echo "$jsondata"
                 #  echo "$abc"
