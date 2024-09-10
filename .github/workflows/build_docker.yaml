@@ -25,8 +25,9 @@ jobs:
                  echo "$abc"
                  for i in "${abc}"
                  do
-                   echo $i
-                 done    
+                   data=data+("$i")
+                 done  
+                 echo "printing array value >> ${data[@]}"  
                 #  echo "data=$abc" >> "$GITHUB_OUTPUT"
 
                 #  if [[ -z files ]] 
