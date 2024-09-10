@@ -29,7 +29,7 @@ jobs:
                  done  
                  echo "printing array value >> ${data[@]}" 
                  echo "testing"
-                 echo "${data[@]}" 
+                 echo "${#data}" 
                 #  echo "data=$abc" >> "$GITHUB_OUTPUT"
 
                 #  if [[ -z files ]] 
