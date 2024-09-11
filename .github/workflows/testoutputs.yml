@@ -1,0 +1,22 @@
+name: "Github outputs"
+on:
+  push:
+    branches:
+        - main
+
+jobs:
+   firstjob: 
+    name: first job
+    runs-on: ubuntu-latest
+    steps:
+        - name: 'firststep'
+          id: first
+          run: |
+            name="Abhishek"
+            echo "firstoutput=$name" >> "$GITHUB_OUTPUT"
+        - name: secondjob
+          run: |
+            outputdata=${{steps.first.outputs.firstoutput}}
+            echo "$outputdata"
+                
+
