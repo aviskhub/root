@@ -29,6 +29,6 @@ jobs:
          run: |
            outputdatafetch=${{needs.firstjob.outputs.mydata}}
            echo "data fetched in second job ${outputdatafetch}"
-           
+
 
 
