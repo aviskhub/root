@@ -28,7 +28,7 @@ jobs:
        - name: sec-first
          run: |
            outputdatafetch=${{needs.firstjob.outputs.mydata}}
-           echo "data fetched in second job ${outputdatafetch}"
+           echo "data fetched in second job ${{needs.firstjob.outputs.mydata}}"
 
 
 
