@@ -9,7 +9,7 @@ jobs:
     name: first job
     runs-on: ubuntu-latest
     outputs:
-        mydata: ${{steps.first.outputs.outputdata}}
+        mydata: ${{steps.first.outputs.firstoutput}}
     steps:
         - name: 'firststep'
           id: first
