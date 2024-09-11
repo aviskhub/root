@@ -27,7 +27,7 @@ jobs:
                  jsondata=$(echo "$abc" | jq -R . | jq -s)  
                  echo "$abc"
                  echo "$jsondata"
-                 echo "json=$jsondata" >> GITHUB_OUTPUT
+                 echo "json=$jsondata" >> "$GITHUB_OUTPUT"
             - name: Build the docker
               run: |
                  json=${{steps.dockerfile.outputs.json}}   
