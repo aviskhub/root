@@ -1,4 +1,4 @@
-name: githubaction env testing 
+name: github action secret variable and env 
 on:
     push:
         branches:
