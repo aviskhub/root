@@ -10,7 +10,9 @@ jobs:
         name: job1
         runs-on: linux-ubuntu
         environment: testing
-        run: |
-         echo " hello testing"
-         echo "${{secrets.mysecret}}"
-         echo "${{vars.myvariable}}"
+        steps:
+            - name: firststep
+              run: |
+               echo " hello testing"
+               echo "${{secrets.mysecret}}"
+               echo "${{vars.myvariable}}"
