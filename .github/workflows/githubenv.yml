@@ -14,5 +14,5 @@ jobs:
             - name: firststep
               run: |
                echo " hello testing"
-               echo "${{secrets.mysecret}}"
-               echo "${{vars.myvariable}}"
+               echo "${{secrets.MYSECRET}}"
+               echo "${{vars.MYVARIABLE}}"
