@@ -10,4 +10,4 @@ jobs:
         steps:
             - name: context
               run: |
-                echo "Github object ${{ github }}"            
+                echo "Github object ${{ github.action }}"            
