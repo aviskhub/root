@@ -1,0 +1,13 @@
+name: Practice context 
+on: 
+    push:
+        branches:
+            - "main"
+jobs:
+    jobs1:
+        name: job1
+        runs-on: ubuntu-latest
+        steps:
+            - name: context
+              run: |
+                echo "Github object ${{ github }}"            
