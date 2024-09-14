@@ -37,7 +37,10 @@ jobs:
                  fi  
                  echo "build=${build}" >> GITHUB_OUTPUT
           
-                
+            - name: Building Docker
+              if: ${{steps.Dockerfile.outputs.build != '' }}
+              run: |    
+                 echo "we need to work to build"
             #      echo "json=$jsondata" >> "$GITHUB_OUTPUT"
             # - name: Build the docker
             #   run: |
