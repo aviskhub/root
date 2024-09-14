@@ -39,6 +39,7 @@ jobs:
             echo "dockerbuild=true" >> $GITHUB_ENV
           else
             echo "dockerbuild=false" >> $GITHUB_ENV
+          fi  
 
       - name: Building Docker
         if: ${{ env.dockerbuild == 'true' }}
