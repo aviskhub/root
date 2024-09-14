@@ -47,48 +47,20 @@ jobs:
           echo "We need to work to build"
           cat jsondata.json
 
-            #      echo "json=$jsondata" >> "$GITHUB_OUTPUT"
-            # - name: Build the docker
-            #   run: |
-            #      json=${{steps.dockerfile.outputs.json}}   
-            #      echo " the output value >  $json"  
-                #  echo "$abc"
-                #  for i in "${abc}"
-                #  do
-                #    data+=("$i")
-                #    echo "just"
-                #  done  
-                #  echo "printing array value >> ${data[@]}" 
-                #  echo "testing"
-                #  echo "${#data}" 
-                #  echo "data=$abc" >> "$GITHUB_OUTPUT"
+      - name: Installing Docker  
+        run: |
+            cat /etc/os-release
+            sudo apt update
+            sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+            curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+            sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+            sudo apt update
+            sudo apt install -y docker-ce
+            docker version
 
-                #  if [[ -z files ]] 
-                #  then
-                #   echo "nothing to build"
-                #  else 
-                #   for i in "{$files}"
-                #   do
-                #    echo "$i"
-                #    data+=($i)
-                #   done
-                #  fi 
-                #  echo "Files that needs to be build ${data[@]}"
-                      
-            # - name: Installing Docker  
-            #   run: |
-            #       cat /etc/os-release
-            #       sudo apt update
-            #       sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
-            #       curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-            #       sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-            #       sudo apt update
-            #       sudo apt install -y docker-ce
-            #       docker version
-            # - name: Building image
-            #   run: |
-            #     data=${{steps.dockerfile.outputs.data}}
-            #     echo "printing >> $data"
+      - name: Building image
+        run: |
+          echo "testing docker command"
 
-        
+  
                 
