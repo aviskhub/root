@@ -27,7 +27,7 @@ jobs:
                  data=()
                  abc=$(git diff --name-only ${{github.event.before}} ${{github.event.after}} | \
                    grep dockerfile | cut -d "/" -f 2 | sort -u )
-                 echo "$abc"  
+                 echo "abc = $abc"  
                  if [[ $abc != "" ]]
                  then  
                   jsondata=$(echo "$abc" | jq -R . | jq -s .)  
@@ -74,10 +74,10 @@ jobs:
             #       sudo apt update
             #       sudo apt install -y docker-ce
             #       docker version
-            - name: Building image
-              run: |
-                data=${{steps.dockerfile.outputs.data}}
-                echo "printing >> $data"
+            # - name: Building image
+            #   run: |
+            #     data=${{steps.dockerfile.outputs.data}}
+            #     echo "printing >> $data"
 
         
                 
