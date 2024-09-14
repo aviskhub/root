@@ -31,7 +31,7 @@ jobs:
           files_changed=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | \
             grep dockerfile | cut -d "/" -f 2 | sort -u) 
           if [[ -n "$files_changed" ]]; then  
-            data=$(echo "$files_changed" | jq -R . | jq -s .)  
+            data=$(echo "$files_changed" | jq -R .)  
             echo "Docker files to build: $data"
             echo "$data" > jsondata.json
             echo "jsonfile=$data" >> GITHUB_OUTPUT
