@@ -30,11 +30,11 @@ jobs:
           if [[ -n "$files_changed" ]]; then  
             data=$(echo "$files_changed" | jq -R . | jq -s .)  
             echo "Docker files to build: $data"
+            echo "$data" > jsondata.json
           else
             echo "Nothing to build"
             data=""
           fi  
-          echo "$data" > jsondata.json
           if [[ -s jsondata.json ]]; then
             echo "dockerbuild=true" >> $GITHUB_ENV
           else
