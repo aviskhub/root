@@ -32,7 +32,7 @@ jobs:
             echo "Docker files to build: $data"
           else
             echo "Nothing to build"
-            data="[]"
+            data=""
           fi  
           echo "$data" > jsondata.json
           if [[ -s jsondata.json ]]; then
