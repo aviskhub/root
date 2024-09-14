@@ -16,6 +16,9 @@ jobs:
   Docker_to_build:
     name: Building Docker File
     runs-on: ubuntu-latest
+    outputs:
+      jsondata: ${{steps.Dockerfile.outputs.jsonfile}}
+      build: ${{steps.Dockerfile.outputs.dockerbuild}}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -31,36 +34,37 @@ jobs:
             data=$(echo "$files_changed" | jq -R . | jq -s .)  
             echo "Docker files to build: $data"
             echo "$data" > jsondata.json
-            echo "dockerbuild=true" >> $GITHUB_ENV
+            echo "jsonfile=$data" >> GITHUB_OUTPUT
+            echo "dockerbuild=true" >> $GITHUB_OUTPUT
           else
             echo "Nothing to build"
-            echo "dockerbuild=false" >> $GITHUB_ENV
+            echo "dockerbuild=false" >> $GITHUB_OUTPUT
           fi  
         
   Build_Docker:
     name: Building_docker
     runs-on: ubuntu-latest
+    needs: Docker_to_build
+    if: ${{needs.Docker_to_build.outputs.build == 'true'}}
     steps:
       - name: Building Docker
-        if: ${{ env.dockerbuild == 'true' }}
         run: |    
           echo "We need to work to build"
-          cat jsondata.json
 
-      - name: Installing Docker  
-        run: |
-            cat /etc/os-release
-            sudo apt update
-            sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
-            curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-            sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-            sudo apt update
-            sudo apt install -y docker-ce
-            docker version
+      # - name: Installing Docker  
+      #   run: |
+      #       cat /etc/os-release
+      #       sudo apt update
+      #       sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+      #       curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+      #       sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+      #       sudo apt update
+      #       sudo apt install -y docker-ce
+      #       docker version
 
-      - name: Building image
-        run: |
-          echo "testing docker command"
+      # - name: Building image
+      #   run: |
+      #     echo "testing docker command"
 
   
                 
