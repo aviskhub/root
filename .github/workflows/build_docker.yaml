@@ -27,9 +27,15 @@ jobs:
                  data=()
                  abc=$(git diff --name-only ${{github.event.before}} ${{github.event.after}} | \
                    grep dockerfile | cut -d "/" -f 2 | sort -u )
-                 jsondata=$(echo "$abc" | jq -R . | jq -s .)  
-                 echo "$abc"
-                 echo "$jsondata" 
+                 echo "$abc"  
+                 if [[ $abc != "" ]]
+                 then  
+                  jsondata=$(echo "$abc" | jq -R . | jq -s .)  
+                  echo "$jsondata"
+                 else
+                  echo "Nothing to build"
+                 fi  
+                
             #      echo "json=$jsondata" >> "$GITHUB_OUTPUT"
             # - name: Build the docker
             #   run: |
