@@ -35,10 +35,10 @@ jobs:
                  else
                   echo "Nothing to build"
                  fi  
-                 echo "build=${build}" >> GITHUB_OUTPUT
+                 echo "build=${build}" >> GITHUB_ENV
           
             - name: Building Docker
-              if: ${{steps.Dockerfile.outputs.build != '' }}
+              if: ${{ env.build != '' }}
               run: |    
                  echo "we need to work to build"
             #      echo "json=$jsondata" >> "$GITHUB_OUTPUT"
