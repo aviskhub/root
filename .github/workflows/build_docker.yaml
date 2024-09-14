@@ -1,45 +1,47 @@
-name: "Build Docker file"
+name: "Build Docker File"
+
 on: 
   push:
     branches:
       - main
     paths:
-      - "dockerfile/**"  
+      - "dockerfile/**"
       - ".github/workflows/build_docker.yaml"
 
 permissions:
   id-token: write
   contents: read
+
 jobs:
-    Building:
-        name: Buiding docker file 
-        runs-on: ubuntu-latest
-        outputs:
-          jsondata: ${{steps.dockerfile.outputs.json}}
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-              with:
-                fetch-depth: 0
-            - name: Dockerfile to build
-              id: Dockerfile
-              run: | 
-                 build=""
-                 abc=$(git diff --name-only ${{github.event.before}} ${{github.event.after}} | \
-                   grep dockerfile | cut -d "/" -f 2 | sort -u ) 
-                 if [[ $abc != "" ]]
-                 then  
-                  build=$(echo "$abc" | jq -R . | jq -s .)  
-                  echo "Docker file to Bulid >> $build"
-                 else
-                  echo "Nothing to build"
-                 fi  
-                 echo "jsondata=${build}" >> GITHUB_ENV
+  Building:
+    name: Building Docker File
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Dockerfile to Build
+        id: Dockerfile
+        run: | 
+          build=""
+          abc=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | \
+            grep dockerfile | cut -d "/" -f 2 | sort -u) 
+          if [[ -n "$abc" ]]; then  
+            build=$(echo "$abc" | jq -R . | jq -s .)  
+            echo "Docker files to build: $build"
+          else
+            echo "Nothing to build"
+            build="[]"
+          fi  
+          echo "jsondata=$build" >> $GITHUB_ENV
           
-            - name: Building Docker
-              run: |    
-                 echo "we need to work to build"
-                 echo "${{ env.jsondata }}"
+      - name: Building Docker
+        run: |    
+          echo "We need to work to build"
+          echo "Docker files: ${{ env.jsondata }}"
+
             #      echo "json=$jsondata" >> "$GITHUB_OUTPUT"
             # - name: Build the docker
             #   run: |
