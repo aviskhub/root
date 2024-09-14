@@ -25,24 +25,23 @@ jobs:
       - name: Dockerfile to Build
         id: Dockerfile
         run: | 
-          build=""
           files_changed=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | \
             grep dockerfile | cut -d "/" -f 2 | sort -u) 
           if [[ -n "$files_changed" ]]; then  
-            data=$(echo "$abc" | jq -R . | jq -s .)  
+            data=$(echo "$files_changed" | jq -R . | jq -s .)  
             echo "Docker files to build: $data"
           else
             echo "Nothing to build"
             data="[]"
           fi  
-          echo "$data" >> jsondata.json
-          if [[ -s jsondata.json ]];then
-           echo "dockerbuild=true" >> GITHUB_ENV 
+          echo "$data" > jsondata.json
+          if [[ -s jsondata.json ]]; then
+            echo "dockerbuild=true" >> $GITHUB_ENV
           else
-           echo "dockerbuild=false" >> GITHUB_ENV 
-          
+            echo "dockerbuild=false" >> $GITHUB_ENV
+
       - name: Building Docker
-        if: ${{ env.dockerbuild == "true" }}
+        if: ${{ env.dockerbuild == 'true' }}
         run: |    
           echo "We need to work to build"
           cat jsondata.json
