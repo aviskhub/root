@@ -35,12 +35,12 @@ jobs:
             echo "Nothing to build"
             build="[]"
           fi  
-          echo "jsondata=$build" >> $GITHUB_ENV
+          echo "$build" >> jsondata.json
           
       - name: Building Docker
         run: |    
           echo "We need to work to build"
-          echo "Docker files: ${{ env.jsondata }}"
+          cat jsondata.json
 
             #      echo "json=$jsondata" >> "$GITHUB_OUTPUT"
             # - name: Build the docker
