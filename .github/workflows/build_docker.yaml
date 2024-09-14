@@ -24,7 +24,6 @@ jobs:
             - name: Dockerfile to build
               id: Dockerfile
               run: | 
-                 data=()
                  build=""
                  abc=$(git diff --name-only ${{github.event.before}} ${{github.event.after}} | \
                    grep dockerfile | cut -d "/" -f 2 | sort -u ) 
@@ -35,12 +34,12 @@ jobs:
                  else
                   echo "Nothing to build"
                  fi  
-                 echo "build=${build}" >> GITHUB_ENV
+                 echo "jsondata=${build}" >> GITHUB_ENV
           
             - name: Building Docker
-              if: ${{ env.build != '' }}
               run: |    
                  echo "we need to work to build"
+                 echo "${{ env.jsondata }}"
             #      echo "json=$jsondata" >> "$GITHUB_OUTPUT"
             # - name: Build the docker
             #   run: |
