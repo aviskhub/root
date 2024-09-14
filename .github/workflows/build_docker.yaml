@@ -50,6 +50,7 @@ jobs:
       - name: Building Docker
         run: |    
           echo "We need to work to build"
+          echo "${{needs.Docker_to_build.outputs.jsondata}}"
 
       # - name: Installing Docker  
       #   run: |
