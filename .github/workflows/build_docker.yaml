@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "dockerfile/**"  
+      - ".github/workflows/build_docker.yaml"
 
 permissions:
   id-token: write
@@ -26,7 +29,7 @@ jobs:
                    grep dockerfile | cut -d "/" -f 2 | sort -u )
                  jsondata=$(echo "$abc" | jq -R . | jq -s .)  
                  echo "$abc"
-                 echo "$jsondata"
+                 echo "$jsondata" 
             #      echo "json=$jsondata" >> "$GITHUB_OUTPUT"
             # - name: Build the docker
             #   run: |

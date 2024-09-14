@@ -1,8 +1,5 @@
 name: github action secret variable and env 
-on:
-    push:
-        branches:
-            - "main"
+on: workflow_dispatch
 
 
 jobs:

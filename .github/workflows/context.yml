@@ -1,8 +1,5 @@
 name: Practice context 
-on: 
-    push:
-        branches:
-            - "main"
+on: workflow_dispatch
 jobs:
     jobs1:
         name: job1
