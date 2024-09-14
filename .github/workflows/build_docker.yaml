@@ -22,20 +22,21 @@ jobs:
               with:
                 fetch-depth: 0
             - name: Dockerfile to build
-              id: dockerfile
+              id: Dockerfile
               run: | 
                  data=()
                  build=""
                  abc=$(git diff --name-only ${{github.event.before}} ${{github.event.after}} | \
-                   grep dockerfile | cut -d "/" -f 2 | sort -u )
-                 echo "abc = $abc"  
+                   grep dockerfile | cut -d "/" -f 2 | sort -u ) 
                  if [[ $abc != "" ]]
                  then  
                   build=$(echo "$abc" | jq -R . | jq -s .)  
-                  echo "$build"
+                  echo "Docker file to Bulid >> $build"
                  else
                   echo "Nothing to build"
                  fi  
+                 echo "build=${build}" >> GITHUB_OUTPUT
+          
                 
             #      echo "json=$jsondata" >> "$GITHUB_OUTPUT"
             # - name: Build the docker
