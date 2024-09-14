@@ -38,6 +38,7 @@ jobs:
           echo "$build" >> jsondata.json
           
       - name: Building Docker
+        if: ${{ -s jsondata.json }}
         run: |    
           echo "We need to work to build"
           cat jsondata.json
