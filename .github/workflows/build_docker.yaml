@@ -44,10 +44,10 @@ jobs:
             # echo "$data" > jsondata.json
             # echo "jsonfile=$data" >> GITHUB_OUTPUT
             # echo "dockerbuild=true" >> $GITHUB_OUTPUT
-          else
-            echo "Nothing to build"
-            echo "dockerbuild=false" >> $GITHUB_OUTPUT
-          fi  
+          # else
+          #   echo "Nothing to build"
+          #   echo "dockerbuild=false" >> $GITHUB_OUTPUT
+          # fi  
         
   # Build_Docker:
   #   name: Building_docker
