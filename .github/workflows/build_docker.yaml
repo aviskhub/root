@@ -38,7 +38,7 @@ jobs:
             while read lines ;
             do
                echo "$lines"
-            done < "$files_changed"   
+            done <<< "$files_changed"   
           else
             echo "files not changed" 
           fi    
