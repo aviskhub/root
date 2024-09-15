@@ -17,8 +17,7 @@ jobs:
     name: Building Docker File
     runs-on: ubuntu-latest
     outputs:
-      jsondata: ${{steps.Dockerfile.outputs.jsonfile}}
-      build: ${{steps.Dockerfile.outputs.dockerbuild}}
+      files_to_build: ${{steps.Dockerfile.outputs.files_to_build}}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -37,25 +36,22 @@ jobs:
             echo "files changed"
             while read lines ;
             do
-               echo "$lines"
-            done <<< "$files_changed"   
+               data+=("$lines")
+            done <<< "$files_changed"
+            echo "files_to_build=$files-changed" >> GITHUB_OUTPUT   
           else
             echo "files not changed" 
           fi    
-
-
-
-
-  # Build_Docker:
-  #   name: Building_docker
-  #   runs-on: ubuntu-latest
-  #   needs: Docker_to_build
-  #   if: ${{needs.Docker_to_build.outputs.build == 'true'}}
-  #   steps:
-  #     - name: Building Docker
-  #       run: |    
-  #         echo "We need to work to build"
-  #         echo "${{needs.Docker_to_build.outputs.jsondata}}"
+  Build_Docker:
+    name: Building_docker
+    runs-on: ubuntu-latest
+    needs: Docker_to_build
+    if: ${{ needs.Docker_to_build.outputs.files_to_build != '' }}
+    steps:
+      - name: Building Docker
+        run: |    
+          echo "We need to work to build"
+          echo "${{needs.Docker_to_build.outputs.files_to_build}}"
 
       # - name: Installing Docker  
       #   run: |
