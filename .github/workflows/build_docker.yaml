@@ -32,7 +32,7 @@ jobs:
           files_changed=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | \
             grep dockerfile | cut -d "/" -f 2 | sort -u) 
           echo "$files_changed"
-          if [[ -s $files_changed ]]
+          if [[ -z "$files_changed" ]]
           then 
             echo "files changed"
           else
