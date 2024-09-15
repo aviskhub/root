@@ -28,7 +28,7 @@ jobs:
       - name: Dockerfile to Build
         id: Dockerfile
         run: | 
-          data()
+          
           files_changed=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | \
             grep dockerfile | cut -d "/" -f 2 | sort -u) 
           echo "$files_changed"
