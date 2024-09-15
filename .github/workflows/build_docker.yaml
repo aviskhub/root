@@ -36,7 +36,7 @@ jobs:
               do  
                data+=("$lines")
               done 
-          echo "${lines[@]}"    
+          echo "${data[@]}"    
 
             # data=$(echo "$files_changed" | jq -R .  )  
             # echo "Docker files to build: $data"
