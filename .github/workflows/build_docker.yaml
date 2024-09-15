@@ -31,24 +31,11 @@ jobs:
           data()
           files_changed=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | \
             grep dockerfile | cut -d "/" -f 2 | sort -u) 
-          echo "$files_changed"  
-          # if [[ -n "$files_changed" ]]; then  
-          #     while read -r lines ;
-          #     do  
-          #      data+=("$lines")
-          #     done 
-          # echo "${data[@]}"    
+          echo "$files_changed"
 
-            # data=$(echo "$files_changed" | jq -R .  )  
-            # echo "Docker files to build: $data"
-            # echo "$data" > jsondata.json
-            # echo "jsonfile=$data" >> GITHUB_OUTPUT
-            # echo "dockerbuild=true" >> $GITHUB_OUTPUT
-          # else
-          #   echo "Nothing to build"
-          #   echo "dockerbuild=false" >> $GITHUB_OUTPUT
-          # fi  
-        
+
+
+
   # Build_Docker:
   #   name: Building_docker
   #   runs-on: ubuntu-latest
