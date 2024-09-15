@@ -31,12 +31,13 @@ jobs:
           data()
           files_changed=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | \
             grep dockerfile | cut -d "/" -f 2 | sort -u) 
-          if [[ -n "$files_changed" ]]; then  
-              while read -r lines ;
-              do  
-               data+=("$lines")
-              done 
-          echo "${data[@]}"    
+          echo "$files_changed"  
+          # if [[ -n "$files_changed" ]]; then  
+          #     while read -r lines ;
+          #     do  
+          #      data+=("$lines")
+          #     done 
+          # echo "${data[@]}"    
 
             # data=$(echo "$files_changed" | jq -R .  )  
             # echo "Docker files to build: $data"
