@@ -28,29 +28,36 @@ jobs:
       - name: Dockerfile to Build
         id: Dockerfile
         run: | 
+          data()
           files_changed=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | \
             grep dockerfile | cut -d "/" -f 2 | sort -u) 
           if [[ -n "$files_changed" ]]; then  
-            data=$(echo "$files_changed" | jq -R .)  
-            echo "Docker files to build: $data"
-            echo "$data" > jsondata.json
-            echo "jsonfile=$data" >> GITHUB_OUTPUT
-            echo "dockerbuild=true" >> $GITHUB_OUTPUT
+              while read -r lines ;
+              do  
+               data+=("$lines")
+              done 
+          echo "${lines[@]}"    
+
+            # data=$(echo "$files_changed" | jq -R .  )  
+            # echo "Docker files to build: $data"
+            # echo "$data" > jsondata.json
+            # echo "jsonfile=$data" >> GITHUB_OUTPUT
+            # echo "dockerbuild=true" >> $GITHUB_OUTPUT
           else
             echo "Nothing to build"
             echo "dockerbuild=false" >> $GITHUB_OUTPUT
           fi  
         
-  Build_Docker:
-    name: Building_docker
-    runs-on: ubuntu-latest
-    needs: Docker_to_build
-    if: ${{needs.Docker_to_build.outputs.build == 'true'}}
-    steps:
-      - name: Building Docker
-        run: |    
-          echo "We need to work to build"
-          echo "${{needs.Docker_to_build.outputs.jsondata}}"
+  # Build_Docker:
+  #   name: Building_docker
+  #   runs-on: ubuntu-latest
+  #   needs: Docker_to_build
+  #   if: ${{needs.Docker_to_build.outputs.build == 'true'}}
+  #   steps:
+  #     - name: Building Docker
+  #       run: |    
+  #         echo "We need to work to build"
+  #         echo "${{needs.Docker_to_build.outputs.jsondata}}"
 
       # - name: Installing Docker  
       #   run: |
