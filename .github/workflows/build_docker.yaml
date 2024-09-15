@@ -31,10 +31,14 @@ jobs:
           data=()
           files_changed=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | \
             grep dockerfile | cut -d "/" -f 2 | sort -u) 
-          echo "$files_changed"
+          echo "changed >> $files_changed"
           if [[ -z "$files_changed" ]]
           then 
             echo "files changed"
+            while read lines ;
+            do
+               echo "$lines"
+            done < "$files_changed"   
           else
             echo "files not changed" 
           fi    
