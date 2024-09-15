@@ -38,7 +38,7 @@ jobs:
             do
                data+=("$lines")
             done <<< "$files_changed"
-            echo "files_to_build=$files-changed" >> GITHUB_OUTPUT   
+            echo "files_to_build=$files-changed" >> "$GITHUB_OUTPUT"   
           else
             echo "files not changed" 
           fi    
