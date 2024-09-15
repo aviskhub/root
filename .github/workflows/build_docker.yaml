@@ -35,10 +35,7 @@ jobs:
           if [[ -z "$files_changed" ]]
           then 
             echo "files changed"
-            while read lines ;
-            do
-               echo "$lines"
-            done < "$files_changed"   
+         
           else
             echo "files not changed" 
           fi    
