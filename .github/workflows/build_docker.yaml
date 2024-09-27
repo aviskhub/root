@@ -30,7 +30,6 @@ jobs:
           data=()
           files_changed=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | \
             grep dockerfile | cut -d "/" -f 2 | sort -u) 
-          echo "changed >> $files_changed"
           if [[ "$files_changed" != "" ]]
           then 
             echo "files changed"
@@ -39,8 +38,6 @@ jobs:
                data+=("$lines")
             done <<< "$files_changed"
             echo "array >> ${data[@]}"  
-            jsondata=$(echo "${data[@]}" | jq -R . | jq -s . )
-            echo "$jsondata"
           else
             echo "files not changed" 
           fi    
