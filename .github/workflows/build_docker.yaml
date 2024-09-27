@@ -52,6 +52,11 @@ jobs:
         run: |    
           echo "We need to work to build"
           echo "${{ needs.Docker_to_build.outputs.files_to_build }}"
+          read -r -a arrdata <<< "${{needs.Docker_to_build.outputs.files_to_build}}"
+          for element in "${arrdata[@]}"; do
+            echo "$element"
+          done  
+           
 
       # - name: Installing Docker  
       #   run: |
