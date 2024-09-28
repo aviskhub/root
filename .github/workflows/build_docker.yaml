@@ -45,6 +45,7 @@ jobs:
   Build_Docker:
     name: Building_docker
     runs-on: ubuntu-latest
+    environment: docker-publish
     needs: Docker_to_build
     if: ${{ needs.Docker_to_build.outputs.files_to_build != '' }}
     steps:
@@ -73,10 +74,15 @@ jobs:
           ls
           for element in "${filetobuild[@]}";
           do
-             docker image build -t ${element}:01 -f ${{ github.workspace }}/dockerfile/default/${element} .
+             docker image build -t abhishekimage/${element}:latest -f ${{ github.workspace }}/dockerfile/default/${element} .
           done 
           echo "Listing all image"
-          docker image ls 
+          docker image ls
+      - name: publishing image 
+        uses: docker/login-action@v3
+        with:
+          username: ${{secrets.GITHUB_USERNAME}}
+          password: ${{secrets.GITHUB_TOKEN}}     
           
 
 
