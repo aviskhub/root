@@ -48,17 +48,10 @@ jobs:
     needs: Docker_to_build
     if: ${{ needs.Docker_to_build.outputs.files_to_build != '' }}
     steps:
-      - name: Building Docker
-        run: |    
-          echo "We need to following file"
-          echo "${{ needs.Docker_to_build.outputs.files_to_build }}"
-          read -a filetobuild <<< "${{ needs.Docker_to_build.outputs.files_to_build }}"
-          echo ">>> ${filetobuild[@]}"
-          for element in "${filetobuild[@]}";
-          do
-             echo "data is $element"
-          done 
-
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+         fetch-depth: 0
       - name: Installing Docker  
         run: |
             cat /etc/os-release
@@ -72,8 +65,15 @@ jobs:
 
       - name: Building image
         run: |
-          echo " listing all the images"
-          docker image ls
+          pwd
+          ls
+          # read -a filetobuild <<< "${{ needs.Docker_to_build.outputs.files_to_build }}"
+          # echo ">>> ${filetobuild[@]}"
+          # for element in "${filetobuild[@]}";
+          # do
+          #    docker image build -t nginx:10 -f element .
+          # done 
+          
 
 
   
