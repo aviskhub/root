@@ -71,7 +71,7 @@ jobs:
           echo ">>> ${filetobuild[@]}"
           for element in "${filetobuild[@]}";
           do
-             docker image build -t nginx:10 -f element ${{ github.workspace }}/dockerfile
+             docker image build -t nginx:10 -f ${{ github.workspace }}/dockerfile
           done 
           echo "Listing all image"
           docker image ls 
