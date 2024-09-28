@@ -50,28 +50,23 @@ jobs:
     steps:
       - name: Building Docker
         run: |    
-          echo "We need to work to build"
+          echo "We need to following file"
           echo "${{ needs.Docker_to_build.outputs.files_to_build }}"
-          read -r -a arrdata <<< "${{needs.Docker_to_build.outputs.files_to_build}}"
-          for element in "${arrdata[@]}"; do
-            echo "$element"
-          done  
-           
 
-      # - name: Installing Docker  
-      #   run: |
-      #       cat /etc/os-release
-      #       sudo apt update
-      #       sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
-      #       curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-      #       sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-      #       sudo apt update
-      #       sudo apt install -y docker-ce
-      #       docker version
+      - name: Installing Docker  
+        run: |
+            cat /etc/os-release
+            sudo apt update
+            sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+            curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+            sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+            sudo apt update
+            sudo apt install -y docker-ce
+            docker version
 
-      # - name: Building image
-      #   run: |
-      #     echo "testing docker command"
+      - name: Building image
+        run: |
+          docker images
 
   
                 
