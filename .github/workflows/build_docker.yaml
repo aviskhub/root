@@ -67,7 +67,7 @@ jobs:
       - name: Building image
         run: |
           docker image ls 
-          docker image prune -a
+          docker image prune -a -y
           echo " listing all the images"
           docker image ls 
 
