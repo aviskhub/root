@@ -28,8 +28,8 @@ jobs:
         id: Dockerfile
         run: | 
           data=()
-          files_changed=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | \
-            grep dockerfile | grep +++ | grep default | cut -d "/" -f 3 | sort -u)   
+          files_changed=$(git diff --name-status ${{ github.event.before }} ${{ github.event.after }} | \
+            grep dockerfile | grep -E 'A|M' | cut -d "/" -f 3 | sort -u)   
           if [[ "$files_changed" != "" ]]
           then 
             echo "files changed"
