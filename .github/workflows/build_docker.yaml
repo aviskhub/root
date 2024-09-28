@@ -69,14 +69,14 @@ jobs:
           ls
           read -a filetobuild <<< "${{ needs.Docker_to_build.outputs.files_to_build }}"
           echo ">>> ${filetobuild[@]}"
-          cd dockerfile 
+          # cd dockerfile 
           ls
-          # for element in "${filetobuild[@]}";
-          # do
-          #    docker image build -t nginx:10 -f ${{ github.workspace }}/dockerfile
-          # done 
-          # echo "Listing all image"
-          # docker image ls 
+          for element in "${filetobuild[@]}";
+          do
+             docker image build -t nginx:10 -f ${{ github.workspace }}/dockerfile/${element}
+          done 
+          echo "Listing all image"
+          docker image ls 
           
 
 
