@@ -52,6 +52,10 @@ jobs:
         run: |    
           echo "We need to following file"
           echo "${{ needs.Docker_to_build.outputs.files_to_build }}"
+          read -a filetobuild <<< ${{needs.Docker_to_build.outputs.files_to_build}}
+          for element in "${filetobuild[@]}"; do
+            echo "data is $element"
+          done 
 
       - name: Installing Docker  
         run: |
@@ -66,10 +70,9 @@ jobs:
 
       - name: Building image
         run: |
-          docker image ls 
-          docker image prune -a -y
           echo " listing all the images"
-          docker image ls 
+          docker image ls
+
 
   
                 
