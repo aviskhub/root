@@ -2,8 +2,7 @@ name: Build_layer
 on: 
   push:
     paths:
-      - "api/*/requirements.txt"
-      - "!api/Layers/*"
+      - "lambdas/*/requirements.txt"
 permissions:
   id-token: write
   contents: read
@@ -38,14 +37,14 @@ jobs:
           cache: pip 
       - name: Installing-dependencies
         run: |
-          cd ./api/sayingthanks
+          cd ${{ github.workspace }}/lambdas/module-required
           pip install -r requirements.txt --target ./python
           zip -r layer.zip ./python
       - name: Upload-layer-artifact
         uses: actions/upload-artifact@v4
         with:
           name: layer-artifact
-          path: ${{ github.workspace }}/api/sayingthanks/layer.zip
+          path: ${{ github.workspace }}/lambdas/module-required/layer.zip
   Upload-layer-to-s3:
     name: Upload-layer
     runs-on: ubuntu-latest
@@ -64,7 +63,7 @@ jobs:
           path: . 
       - name: upload-to-s3
         run: |
-          aws s3 cp ${{ github.workspace }}/layer.zip s3://python-package-api/api/layer/lambda_layer.zip --region ap-south-1             
+          aws s3 cp ${{ github.workspace }}/layer.zip s3://python-package-api/lambdas/layer/lambda_layer.zip --region ap-south-1             
                
 
 

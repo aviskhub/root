@@ -85,7 +85,7 @@ jobs:
           echo ">>> ${filetobuild[@]}"
           for element in "${filetobuild[@]}";
           do
-             docker push abhishekimage/${element}:latest
+             docker push ${{secrets.DOCKER_USERNAME}}/${element}:latest
           done 
 
 
